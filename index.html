@@ -1,163 +1,267 @@
-<!doctype html>
-<html lang="pt-BR" class="h-full">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual do Desapego - Liberte-se</title>
   
-  <script src="https://cdn.tailwindcss.com"></script>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   
   <style>
-    /* Estilos Otimizados */
-    body {
-      box-sizing: border-box;
-      background-color: #000000;
-      color: #ffffff;
-    }
+    /* --- CSS PURO (Sem Scripts Pesados) --- */
     
-    .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
-    .font-body { font-family: 'Inter', sans-serif; }
-    
-    /* Animações Simplificadas para Carregar Rápido */
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
-      50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.7); }
-    }
-    
-    .btn-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
-    
-    @keyframes fade-in-up {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .animate-fade-in { animation: fade-in-up 0.5s ease-out forwards; }
-    
-    .card-hover {
-      transition: transform 0.2s ease, border-color 0.2s ease;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .card-hover:hover {
-      transform: translateY(-3px);
-      border-color: rgba(212, 175, 55, 0.3);
+    :root {
+      --gold: #D4AF37;       /* Cor Dourada Principal */
+      --black: #050505;      /* Fundo Preto */
+      --gray-dark: #111111;  /* Fundo dos Cards */
+      --gray-text: #9ca3af;  /* Cor do Texto Cinza */
+      --white: #ffffff;      /* Cor do Texto Branco */
     }
 
-    .product-shadow { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1)); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden; /* Evita rolagem lateral */
+      line-height: 1.5;
+    }
+
+    /* Container Central (Foco no Mobile) */
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Tipografia */
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      line-height: 0.9;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+    
+    h1 span.gray { color: #6b7280; }
+    h1 span.gold { color: var(--gold); }
+
+    h2 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #6b7280;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    p { font-weight: 300; color: var(--gray-text); font-size: 14px; }
+    
+    .hero-subtitle {
+      margin-bottom: 24px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Botão (Estilo Glow) */
+    .btn {
+      display: block;
+      width: 100%;
+      background-color: var(--gold);
+      color: #000;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 18px;
+      transition: transform 0.2s, background 0.2s;
+      animation: pulse 2.5s infinite; /* Animação de Pulsar */
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:active { transform: scale(0.98); }
+    .btn:hover { transform: scale(1.02); }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+      50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.7); }
+      100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+    }
+
+    /* Imagem do Produto */
+    .product-img {
+      width: 160px; /* Tamanho ajustado */
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 24px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Cards de Dor */
+    .cards-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    
+    .card {
+      background: var(--gray-dark);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    
+    .card:hover { 
+      transform: translateY(-3px); 
+      border-color: rgba(212, 175, 55, 0.3); 
+    }
+
+    .icon { width: 24px; height: 24px; flex-shrink: 0; }
+    .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; margin-bottom: 4px; letter-spacing: 0.5px; color: var(--white); }
+    .card p { font-size: 12px; line-height: 1.4; margin: 0; }
+
+    /* Cores dos Ícones */
+    .red { color: #ef4444; }
+    .purple { color: #a855f7; }
+    .gold { color: var(--gold); }
+
+    /* Prova Social */
+    .social-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.05);
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 30px;
+    }
+    .social-text { font-size: 12px; color: #e5e7eb; font-weight: 500; }
+
+    /* Divisor */
+    .divider {
+      display: flex; align-items: center; justify-content: center; gap: 10px; margin: 40px 0; opacity: 0.3;
+    }
+    .line { height: 1px; width: 60px; background: #fff; }
+    .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+    /* Fundo (Luzes/Efeito) */
+    .bg-light {
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; height: 100%; pointer-events: none; z-index: 1;
+      background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
+    }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; text-align: center; }
+    .security { display: flex; justify-content: center; gap: 8px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-top: 16px; }
+
+    /* Utilitários */
+    .text-center { text-align: center; }
+    .mb-small { margin-bottom: 12px; }
   </style>
 </head>
+<body>
 
-<body class="h-full font-body overflow-x-hidden bg-black">
-  
-  <div class="min-h-full w-full relative">
-   
-   <div class="fixed inset-0 pointer-events-none overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-900/20 rounded-full blur-[100px] opacity-50"></div>
-   </div>
+  <div class="bg-light"></div>
 
-   <div class="relative z-10 max-w-md mx-auto px-6 py-8">
+  <div class="container">
     
-    <div class="text-center mb-6 animate-fade-in">
-     <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 mb-2">
-      <svg class="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" /> 
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-     </div>
+    <div class="text-center mb-small">
+      <div style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+          <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" /> 
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      </div>
     </div>
 
-    <section class="text-center mb-10">
-     
-     <h1 class="font-display text-5xl leading-[0.9] text-white mb-4 animate-fade-in">
-       NO FUNDO,<br>
-       <span class="text-gray-400">VOCÊ SABE QUE ISSO</span><br>
-       <span class="text-amber-500">NÃO VAI MUDAR.</span>
-     </h1>
-     
-     <p class="font-body text-gray-300 font-light leading-relaxed mb-6 animate-fade-in text-sm max-w-xs mx-auto">
-       Descubra como hackear a química do seu cérebro e <strong>eliminar a vontade de ter recaída em 24 horas.</strong>
-     </p>
+    <div class="text-center">
+      <h1>
+        NO FUNDO,<br>
+        <span class="gray">VOCÊ SABE QUE ISSO</span><br>
+        <span class="gold">NÃO VAI MUDAR.</span>
+      </h1>
 
-     <div class="mb-6 animate-fade-in flex justify-center">
-        <img 
-          src="https://i.ibb.co/Kxs8DwLp/IMG-6450.png" 
-          alt="Manual do Desapego" 
-          class="rounded-xl w-40 h-auto object-cover product-shadow border border-white/10"
-        >
-     </div>
+      <p class="hero-subtitle">
+        Descubra como hackear a química do seu cérebro e <strong>eliminar a vontade de ter recaída em 24 horas.</strong>
+      </p>
 
-     <a href="https://pay.kiwify.com.br/l2tifvm" class="btn-glow block w-full bg-[#D4AF37] text-black font-bold text-lg px-6 py-4 rounded-xl transition-transform duration-200 hover:scale-[1.02] animate-fade-in tracking-wide uppercase">
-       QUERO ME LIBERTAR
-     </a>
-    </section>
+      <img src="https://i.ibb.co/Kxs8DwLp/IMG-6450.png" alt="Manual do Desapego" class="product-img">
 
-    <div class="flex items-center justify-center gap-4 mb-10 opacity-30">
-     <div class="h-px w-20 bg-gradient-to-r from-transparent to-white"></div>
-     <div class="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
-     <div class="h-px w-20 bg-gradient-to-l from-transparent to-white"></div>
+      <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO ME LIBERTAR</a>
     </div>
 
-    <section class="space-y-3 mb-12">
-     <h2 class="text-center text-xs uppercase tracking-[0.2em] text-gray-500 mb-5 font-semibold">Os sinais que você ignora</h2>
-     
-     <div class="card-hover bg-[#111] rounded-xl p-4 animate-fade-in">
-      <div class="flex items-start gap-4">
-       <div class="mt-1"><svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-       <div>
-        <h3 class="font-display text-lg text-white mb-1">A ABSTINÊNCIA</h3>
-        <p class="text-gray-400 text-xs font-light">Ansiedade quando a pessoa não responde. O vazio que consome quando você não tem notícias.</p>
-       </div>
-      </div>
-     </div>
-
-     <div class="card-hover bg-[#111] rounded-xl p-4 animate-fade-in">
-      <div class="flex items-start gap-4">
-       <div class="mt-1"><svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg></div>
-       <div>
-        <h3 class="font-display text-lg text-white mb-1">O STALKING</h3>
-        <p class="text-gray-400 text-xs font-light">Vício em vigiar o perfil. Cada foto e cada story vira uma obsessão.</p>
-       </div>
-      </div>
-     </div>
-
-     <div class="card-hover bg-[#111] rounded-xl p-4 animate-fade-in">
-      <div class="flex items-start gap-4">
-       <div class="mt-1"><svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-       <div>
-        <h3 class="font-display text-lg text-white mb-1">A ILUSÃO</h3>
-        <p class="text-gray-400 text-xs font-light">Achar que "dessa vez vai ser diferente". A esperança falsa que te mantém presa no ciclo.</p>
-       </div>
-      </div>
-     </div>
-    </section>
-
-    <div class="text-center mb-8 animate-fade-in">
-     <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-      <span class="text-xs text-gray-300 font-medium">✨ +2.847 pessoas já se libertaram</span>
-     </div>
+    <div class="divider">
+      <div class="line"></div>
+      <div class="dot"></div>
+      <div class="line"></div>
     </div>
 
-    <section class="text-center pb-8">
-     <p class="text-gray-400 text-xs mb-3 font-light italic">"Você não precisa disso. Você precisa se curar."</p>
-     
-     <a href="https://pay.kiwify.com.br/l2tifvm" class="btn-glow block w-full bg-[#D4AF37] text-black font-bold text-lg px-6 py-4 rounded-xl transition-all duration-200 hover:scale-[1.02] uppercase">
-       QUERO ME LIBERTAR AGORA
-     </a>
-     
-     <div class="mt-4 flex justify-center items-center gap-2 text-[9px] text-gray-500 uppercase tracking-widest">
-       <span>🔒 Compra Segura</span> • <span>Acesso Imediato</span>
-     </div>
-    </section>
+    <div class="cards-grid">
+      <h2>OS SINAIS QUE VOCÊ IGNORA</h2>
 
-    <footer class="mt-6 pt-6 border-t border-white/5 text-center">
-     <p class="text-[9px] text-gray-700">© 2026 Manual do Desapego</p>
+      <div class="card">
+        <svg class="icon red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <div>
+          <h3>A ABSTINÊNCIA</h3>
+          <p>Ansiedade quando a pessoa não responde. O vazio que consome quando você não tem notícias.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <svg class="icon purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+        <div>
+          <h3>O STALKING</h3>
+          <p>Vício em vigiar o perfil. Cada foto e cada story vira uma obsessão.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <svg class="icon gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <div>
+          <h3>A ILUSÃO</h3>
+          <p>Achar que "dessa vez vai ser diferente". A esperança falsa que te mantém presa no ciclo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div class="social-proof">
+        <span class="social-text">✨ +2.847 pessoas já se libertaram</span>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <p style="margin-bottom: 16px; font-style: italic; font-size: 12px;">"Você não precisa disso. Você precisa se curar."</p>
+      
+      <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO ME LIBERTAR AGORA</a>
+      
+      <div class="security">
+        <span>🔒 Compra Segura</span> • <span>Acesso Imediato</span>
+      </div>
+    </div>
+
+    <footer>
+      <p style="font-size: 10px; color: #555;">© 2026 Manual do Desapego</p>
     </footer>
 
-   </div>
   </div>
-
 </body>
 </html>
