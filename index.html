@@ -6,7 +6,7 @@
   <title>Manual do Desapego - Liberte-se</title>
   
   <style>
-    /* --- CSS PURO V5.0 (Sem Fontes Externas) --- */
+    /* --- CSS PURO V8.0 (Lua Dourada Premium) --- */
     
     :root {
       --gold: #D4AF37;       
@@ -21,7 +21,6 @@
     body {
       background-color: var(--black);
       color: var(--white);
-      /* Usa a fonte padrão do sistema (iPhone/Android) - Zero carregamento */
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       overflow-x: hidden;
       line-height: 1.5;
@@ -37,14 +36,13 @@
 
     /* Tipografia */
     h1 {
-      /* Fonte Impact é parecida com a Bebas e já vem no celular */
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      font-size: 42px; /* Ajustado para Impact que é maior */
+      font-size: 42px;
       line-height: 1.1;
       margin-bottom: 16px;
       letter-spacing: 1px;
       text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-      font-weight: normal; /* Impact já é bold */
+      font-weight: normal;
     }
     
     h1 span.gray { color: #6b7280; }
@@ -55,9 +53,10 @@
       text-transform: uppercase;
       letter-spacing: 3px;
       color: #6b7280;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       font-weight: 700;
       text-align: center;
+      margin-top: 40px;
     }
 
     p { font-weight: 400; color: var(--gray-text); font-size: 15px; }
@@ -68,6 +67,23 @@
       margin-left: auto;
       margin-right: auto;
     }
+
+    /* Logo Novo */
+    .logo-img {
+        width: 70px;
+        height: auto;
+        margin-bottom: 20px;
+        /* Adiciona um brilho dourado suave ao redor da lua */
+        filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+    }
+
+    /* Preço e Oferta */
+    .price-box {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .price-old { text-decoration: line-through; color: #6b7280; font-size: 14px; margin-right: 8px; }
+    .price-new { color: var(--gold); font-size: 24px; }
 
     /* Botão */
     .btn {
@@ -87,6 +103,7 @@
       animation: pulse 2.5s infinite;
       border: none;
       cursor: pointer;
+      margin-top: 10px;
     }
 
     .btn:active { transform: scale(0.98); }
@@ -97,21 +114,21 @@
       100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
     }
 
-    /* Imagem */
+    /* Imagem do Produto */
     .product-img {
-      width: 160px;
+      width: 180px;
       height: auto;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 24px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      margin-bottom: 15px;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
       display: block;
       margin-left: auto;
       margin-right: auto;
     }
 
-    /* Cards */
-    .cards-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    /* Cards e Listas */
+    .cards-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
     
     .card {
       background: var(--gray-dark);
@@ -135,44 +152,77 @@
     }
     .card p { font-size: 13px; line-height: 1.4; margin: 0; }
 
-    /* Cores dos Ícones */
+    /* Lista Expansão */
+    .module-list { list-style: none; margin: 0; text-align: left; background: #111; border-radius: 12px; padding: 10px; border: 1px solid rgba(255,255,255,0.05); }
+    .module-item { 
+      padding: 12px; 
+      border-bottom: 1px solid rgba(255,255,255,0.05); 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      font-size: 14px; 
+      color: #e5e7eb;
+    }
+    .module-item:last-child { border-bottom: none; }
+    .check-gold { color: var(--gold); font-weight: bold; font-size: 16px; }
+
+    /* Depoimentos WhatsApp (Misto) */
+    .print-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 10px; }
+    .print-card {
+      background: #18181b;
+      padding: 16px;
+      border-radius: 12px;
+      border-left: 2px solid var(--gold);
+      position: relative;
+    }
+    .print-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .avatar {
+      width: 28px; height: 28px; background: #333; border-radius: 50%; 
+      display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: bold;
+    }
+    .print-name { font-size: 12px; font-weight: bold; color: #fff; }
+    .print-text { font-size: 13px; color: #d1d5db; font-style: italic; line-height: 1.4; }
+
+    /* FAQ */
+    details {
+      background: rgba(255,255,255,0.03);
+      margin-bottom: 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    summary {
+      padding: 15px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--white);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    summary::after { content: '+'; color: var(--gold); font-weight: bold; font-size: 16px; }
+    details[open] summary::after { content: '-'; }
+    .faq-answer {
+      padding: 0 15px 15px 15px;
+      color: var(--gray-text);
+      font-size: 13px;
+      line-height: 1.5;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 5px;
+      padding-top: 10px;
+    }
+
+    /* Utilitários */
     .red { color: #ef4444; }
     .purple { color: #a855f7; }
     .gold { color: var(--gold); }
-
-    /* Prova Social */
-    .social-proof {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,0.05);
-      padding: 8px 16px;
-      border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 30px;
-    }
-    .social-text { font-size: 12px; color: #e5e7eb; font-weight: 500; }
-
-    /* Divisor */
-    .divider {
-      display: flex; align-items: center; justify-content: center; gap: 10px; margin: 40px 0; opacity: 0.3;
-    }
+    .divider { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 40px 0; opacity: 0.3; }
     .line { height: 1px; width: 60px; background: #fff; }
     .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
-
-    /* Fundo */
-    .bg-light {
-      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
-      width: 100%; height: 100%; pointer-events: none; z-index: 1;
-      background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
-    }
-
-    /* Footer */
-    footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; text-align: center; }
+    .bg-light { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100%; pointer-events: none; z-index: 1; background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%); }
+    footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 40px; text-align: center; }
     .security { display: flex; justify-content: center; gap: 8px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-top: 16px; }
-
-    .text-center { text-align: center; }
-    .mb-small { margin-bottom: 12px; }
   </style>
 </head>
 <body>
@@ -181,13 +231,8 @@
 
   <div class="container">
     
-    <div class="text-center mb-small">
-      <div style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
-          <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" /> 
-          <circle cx="12" cy="12" r="3" />
-        </svg>
-      </div>
+    <div class="text-center">
+      <img src="https://i.ibb.co/XZ1SxN2C/Lua.png" alt="Logo Manual do Desapego" class="logo-img">
     </div>
 
     <div class="text-center">
@@ -198,12 +243,18 @@
       </h1>
 
       <p class="hero-subtitle">
-        Descubra como hackear a química do seu cérebro e <strong>eliminar a vontade de ter recaída em 24 horas.</strong>
+        Hackeie a química do seu cérebro e elimine a vontade de ter recaída em <strong>24 horas.</strong>
       </p>
 
       <img src="https://i.ibb.co/Kxs8DwLp/IMG-6450.png" alt="Manual do Desapego" class="product-img">
 
+      <div class="price-box">
+        <span class="price-old">De R$ 69,90</span>
+        <span class="price-new">Por R$ 10,00</span>
+      </div>
+
       <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO ME LIBERTAR</a>
+      <p style="font-size: 11px; margin-top: 8px; opacity: 0.6;">⚡ Acesso imediato no e-mail</p>
     </div>
 
     <div class="divider">
@@ -227,10 +278,10 @@
         <svg class="icon purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
         <div>
           <h3>O STALKING</h3>
-          <p>Vício em vigiar o perfil. Cada foto e cada story vira uma obsessão.</p>
+          <p>Vício em vigiar o perfil. Cada foto e cada story vira uma obsessão na sua mente.</p>
         </div>
       </div>
-
+      
       <div class="card">
         <svg class="icon gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         <div>
@@ -240,6 +291,70 @@
       </div>
     </div>
 
+    <section class="text-center">
+      <h2>PRA QUEM É O MANUAL?</h2>
+      <p style="margin-bottom: 20px; font-size: 14px;">Se você marcar 2 itens, você precisa disso hoje:</p>
+      
+      <ul class="module-list">
+        <li class="module-item"><span class="check-gold">✓</span> Você stalkea o perfil exaustivamente</li>
+        <li class="module-item"><span class="check-gold">✓</span> Sente aperto no peito ao ver fotos</li>
+        <li class="module-item"><span class="check-gold">✓</span> Tem recaídas e manda mensagem</li>
+        <li class="module-item"><span class="check-gold">✓</span> Quer parar de sofrer, mas não consegue</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>ELES CONSEGUIRAM EM 24H</h2>
+      
+      <div class="print-container">
+        <div class="print-card">
+          <div class="print-header">
+            <div class="avatar">M</div>
+            <span class="print-name">Marcos P.</span>
+          </div>
+          <p class="print-text">"Achava que era coisa de mulher, mas a química cerebral é real. Fiz o protocolo e parei de vigiar o perfil dela no mesmo dia. Surreal."</p>
+        </div>
+
+        <div class="print-card">
+          <div class="print-header">
+            <div class="avatar">J</div>
+            <span class="print-name">Júlia S.</span>
+          </div>
+          <p class="print-text">"Eu tava no fundo do poço, gastando dinheiro com besteira pra tentar esquecer. O Manual me salvou. Valeu muito mais que 10 reais."</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>PERGUNTAS FREQUENTES</h2>
+      
+      <details>
+        <summary>O que é e por que vale a pena?</summary>
+        <div class="faq-answer">
+          Sendo sincero com você: Hoje em dia, com R$ 10,00 você mal compra um salgado na esquina, e a inflação faz o dinheiro valer cada vez menos. 
+          <br><br>
+          Você pode gastar esses 10 reais em algo temporário que acaba em 15 minutos, ou comprar <strong>Conhecimento</strong>. 
+          Aqui você leva algo que pode mudar sua vida pra sempre e te impedir de sofrer. O lanche acaba, a liberdade fica.
+        </div>
+      </details>
+
+      <details>
+        <summary>Funciona pra mim?</summary>
+        <div class="faq-answer">Sim. O método baseia-se em neurociência e química cerebral. Funciona para homens e mulheres que querem retomar o controle.</div>
+      </details>
+
+      <details>
+        <summary>E se eu não gostar?</summary>
+        <div class="faq-answer">Você tem o <strong>Desafio 24h</strong>. Se aplicar e não sentir a diferença no primeiro dia, nós devolvemos seu dinheiro na hora.</div>
+      </details>
+    </section>
+
+    <div class="divider">
+      <div class="line"></div>
+      <div class="dot"></div>
+      <div class="line"></div>
+    </div>
+
     <div class="text-center">
       <div class="social-proof">
         <span class="social-text">✨ +2.847 pessoas já se libertaram</span>
@@ -247,20 +362,23 @@
     </div>
 
     <div class="text-center">
-      <p style="margin-bottom: 16px; font-style: italic; font-size: 12px;">"Você não precisa disso. Você precisa se curar."</p>
+      <p style="margin-bottom: 16px; font-style: italic; font-size: 13px;">"Você não precisa de migalhas. Você precisa se curar."</p>
       
-      <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO ME LIBERTAR AGORA</a>
+      <div class="price-box">
+        <span class="price-new">HOJE POR R$ 10,00</span>
+      </div>
+
+      <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO O PACOTE COMPLETO</a>
       
       <div class="security">
-        <span>🔒 Compra Segura</span> • <span>Acesso Imediato</span>
+        <span>🔒 Desafio 24h</span> • <span>Compra Segura</span>
       </div>
     </div>
 
     <footer>
-      <p style="font-size: 10px; color: #555;">© 2026 Manual do Desapego</p>
+      <p style="font-size: 10px; color: #444;">© 2026 Manual do Desapego</p>
     </footer>
 
   </div>
 </body>
 </html>
-
