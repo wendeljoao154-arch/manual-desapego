@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manual do Desapego - Liberte-se</title>
+  <title>Análise de Perfil - Manual do Desapego</title>
   
   <style>
-    /* --- CSS PURO V8.0 (Lua Dourada Premium) --- */
+    /* --- CSS V10.0: Quiz Funnel + Blind Offer (Preço Misterioso) --- */
     
     :root {
       --gold: #D4AF37;       
@@ -26,200 +26,117 @@
       line-height: 1.5;
     }
 
-    .container {
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 40px 24px;
-      position: relative;
-      z-index: 2;
+    /* --- ESTILOS DO QUIZ (TELA CHEIA) --- */
+    #quiz-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--black);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    /* Tipografia */
-    h1 {
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      font-size: 42px;
-      line-height: 1.1;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-      text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-      font-weight: normal;
-    }
-    
-    h1 span.gray { color: #6b7280; }
-    h1 span.gold { color: var(--gold); }
-
-    h2 {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: #6b7280;
-      margin-bottom: 25px;
-      font-weight: 700;
+    .quiz-container {
+      width: 100%;
+      max-width: 400px;
       text-align: center;
-      margin-top: 40px;
     }
 
-    p { font-weight: 400; color: var(--gray-text); font-size: 15px; }
-    
-    .hero-subtitle {
-      margin-bottom: 24px;
-      max-width: 300px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .quiz-step { display: none; animation: fadeIn 0.5s ease; }
+    .quiz-step.active { display: block; }
 
-    /* Logo Novo */
-    .logo-img {
-        width: 70px;
-        height: auto;
-        margin-bottom: 20px;
-        /* Adiciona um brilho dourado suave ao redor da lua */
-        filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
-    }
-
-    /* Preço e Oferta */
-    .price-box {
-      margin-bottom: 20px;
+    .quiz-question {
+      font-size: 20px;
       font-weight: 600;
+      margin-bottom: 30px;
+      line-height: 1.4;
+      color: #fff;
     }
-    .price-old { text-decoration: line-through; color: #6b7280; font-size: 14px; margin-right: 8px; }
-    .price-new { color: var(--gold); font-size: 24px; }
 
-    /* Botão */
-    .btn {
+    .quiz-btn {
       display: block;
       width: 100%;
-      background-color: var(--gold);
-      color: #000;
-      font-weight: 800;
-      text-decoration: none;
-      padding: 18px;
-      border-radius: 12px;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-size: 18px;
-      transition: transform 0.2s;
-      animation: pulse 2.5s infinite;
-      border: none;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .btn:active { transform: scale(0.98); }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
-      50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.7); }
-      100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
-    }
-
-    /* Imagem do Produto */
-    .product-img {
-      width: 180px;
-      height: auto;
-      border-radius: 12px;
+      background: #1f2937;
       border: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 15px;
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Cards e Listas */
-    .cards-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-    
-    .card {
-      background: var(--gray-dark);
-      border: 1px solid rgba(255,255,255,0.05);
+      color: #fff;
+      padding: 16px;
+      margin-bottom: 12px;
       border-radius: 12px;
-      padding: 20px;
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    
-    .icon { width: 24px; height: 24px; flex-shrink: 0; }
-    
-    .card h3 { 
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      font-size: 20px; 
-      margin-bottom: 4px; 
-      letter-spacing: 0.5px; 
-      color: var(--white); 
-      font-weight: normal;
-    }
-    .card p { font-size: 13px; line-height: 1.4; margin: 0; }
 
-    /* Lista Expansão */
-    .module-list { list-style: none; margin: 0; text-align: left; background: #111; border-radius: 12px; padding: 10px; border: 1px solid rgba(255,255,255,0.05); }
-    .module-item { 
-      padding: 12px; 
-      border-bottom: 1px solid rgba(255,255,255,0.05); 
-      display: flex; 
-      align-items: center; 
-      gap: 12px; 
-      font-size: 14px; 
-      color: #e5e7eb;
+    .quiz-btn:hover, .quiz-btn:active {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+      font-weight: bold;
     }
+
+    /* Barra de Progresso */
+    .loading-container { display: none; text-align: center; }
+    .loading-bar-bg {
+      width: 100%; height: 8px; background: #333; border-radius: 10px; margin: 20px 0; overflow: hidden;
+    }
+    .loading-bar-fill {
+      height: 100%; background: var(--gold); width: 0%; transition: width 0.1s linear; border-radius: 10px;
+      box-shadow: 0 0 10px var(--gold);
+    }
+    .loading-text { font-size: 14px; color: var(--gray-text); margin-bottom: 5px; }
+    .loading-percent { font-size: 24px; font-weight: bold; color: var(--gold); }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- ESTILOS DO SITE V8.0 (ESCONDIDO NO INÍCIO) --- */
+    #sales-page { display: none; }
+
+    .container {
+      max-width: 480px; margin: 0 auto; padding: 40px 24px; position: relative; z-index: 2;
+    }
+
+    h1 { font-family: Impact, sans-serif; font-size: 42px; line-height: 1.1; margin-bottom: 16px; letter-spacing: 1px; text-shadow: 0 0 20px rgba(212, 175, 55, 0.2); font-weight: normal; }
+    h1 span.gray { color: #6b7280; }
+    h1 span.gold { color: var(--gold); }
+    h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: #6b7280; margin-bottom: 25px; font-weight: 700; text-align: center; margin-top: 40px; }
+    p { font-weight: 400; color: var(--gray-text); font-size: 15px; }
+    .hero-subtitle { margin-bottom: 24px; max-width: 300px; margin-left: auto; margin-right: auto; }
+    .logo-img { width: 70px; height: auto; margin-bottom: 20px; filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)); }
+    
+    /* Preço só com o riscado */
+    .price-box { margin-bottom: 20px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 5px;}
+    .price-old { text-decoration: line-through; color: #ef4444; font-size: 18px; opacity: 0.8; } /* Vermelho para destaque */
+    .price-label { color: var(--gold); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+
+    .btn { display: block; width: 100%; background-color: var(--gold); color: #000; font-weight: 800; text-decoration: none; padding: 18px; border-radius: 12px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; font-size: 18px; transition: transform 0.2s; animation: pulse 2.5s infinite; border: none; cursor: pointer; margin-top: 10px; }
+    .btn:active { transform: scale(0.98); }
+    @keyframes pulse { 0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); } 50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.7); } 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); } }
+    .product-img { width: 180px; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); display: block; margin-left: auto; margin-right: auto; }
+    .cards-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .card { background: var(--gray-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; display: flex; align-items: flex-start; gap: 16px; }
+    .icon { width: 24px; height: 24px; flex-shrink: 0; }
+    .card h3 { font-family: Impact, sans-serif; font-size: 20px; margin-bottom: 4px; letter-spacing: 0.5px; color: var(--white); font-weight: normal; }
+    .card p { font-size: 13px; line-height: 1.4; margin: 0; }
+    .module-list { list-style: none; margin: 0; text-align: left; background: #111; border-radius: 12px; padding: 10px; border: 1px solid rgba(255,255,255,0.05); }
+    .module-item { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px; font-size: 14px; color: #e5e7eb; }
     .module-item:last-child { border-bottom: none; }
     .check-gold { color: var(--gold); font-weight: bold; font-size: 16px; }
-
-    /* Depoimentos WhatsApp (Misto) */
     .print-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 10px; }
-    .print-card {
-      background: #18181b;
-      padding: 16px;
-      border-radius: 12px;
-      border-left: 2px solid var(--gold);
-      position: relative;
-    }
+    .print-card { background: #18181b; padding: 16px; border-radius: 12px; border-left: 2px solid var(--gold); position: relative; }
     .print-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-    .avatar {
-      width: 28px; height: 28px; background: #333; border-radius: 50%; 
-      display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: bold;
-    }
+    .avatar { width: 28px; height: 28px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: bold; }
     .print-name { font-size: 12px; font-weight: bold; color: #fff; }
     .print-text { font-size: 13px; color: #d1d5db; font-style: italic; line-height: 1.4; }
-
-    /* FAQ */
-    details {
-      background: rgba(255,255,255,0.03);
-      margin-bottom: 8px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-    summary {
-      padding: 15px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 13px;
-      color: var(--white);
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    details { background: rgba(255,255,255,0.03); margin-bottom: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+    summary { padding: 15px; cursor: pointer; font-weight: 600; font-size: 13px; color: var(--white); list-style: none; display: flex; justify-content: space-between; align-items: center; }
     summary::after { content: '+'; color: var(--gold); font-weight: bold; font-size: 16px; }
     details[open] summary::after { content: '-'; }
-    .faq-answer {
-      padding: 0 15px 15px 15px;
-      color: var(--gray-text);
-      font-size: 13px;
-      line-height: 1.5;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      margin-top: 5px;
-      padding-top: 10px;
-    }
-
-    /* Utilitários */
-    .red { color: #ef4444; }
-    .purple { color: #a855f7; }
-    .gold { color: var(--gold); }
+    .faq-answer { padding: 0 15px 15px 15px; color: var(--gray-text); font-size: 13px; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 5px; padding-top: 10px; }
+    .red { color: #ef4444; } .purple { color: #a855f7; } .gold { color: var(--gold); }
     .divider { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 40px 0; opacity: 0.3; }
-    .line { height: 1px; width: 60px; background: #fff; }
-    .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    .line { height: 1px; width: 60px; background: #fff; } .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
     .bg-light { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100%; pointer-events: none; z-index: 1; background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%); }
     footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 40px; text-align: center; }
     .security { display: flex; justify-content: center; gap: 8px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-top: 16px; }
@@ -227,158 +144,245 @@
 </head>
 <body>
 
-  <div class="bg-light"></div>
+  <div id="quiz-overlay">
+    <div class="quiz-container">
+      
+      <img src="https://i.ibb.co/XZ1SxN2C/Lua.png" alt="Lua" style="width: 50px; opacity: 0.8; margin-bottom: 20px;">
 
-  <div class="container">
-    
-    <div class="text-center">
-      <img src="https://i.ibb.co/XZ1SxN2C/Lua.png" alt="Logo Manual do Desapego" class="logo-img">
-    </div>
-
-    <div class="text-center">
-      <h1>
-        NO FUNDO,<br>
-        <span class="gray">VOCÊ SABE QUE ISSO</span><br>
-        <span class="gold">NÃO VAI MUDAR.</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        Hackeie a química do seu cérebro e elimine a vontade de ter recaída em <strong>24 horas.</strong>
-      </p>
-
-      <img src="https://i.ibb.co/Kxs8DwLp/IMG-6450.png" alt="Manual do Desapego" class="product-img">
-
-      <div class="price-box">
-        <span class="price-old">De R$ 69,90</span>
-        <span class="price-new">Por R$ 10,00</span>
+      <div class="quiz-step active" id="q1">
+        <p class="quiz-question">Ultimamente, você sente que seu humor oscila muito dependendo de como as outras pessoas te tratam?</p>
+        <button class="quiz-btn" onclick="nextStep('q1', 'q2')">Sim, acontece sempre</button>
+        <button class="quiz-btn" onclick="nextStep('q1', 'q2')">Às vezes</button>
       </div>
 
-      <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO ME LIBERTAR</a>
-      <p style="font-size: 11px; margin-top: 8px; opacity: 0.6;">⚡ Acesso imediato no e-mail</p>
-    </div>
+      <div class="quiz-step" id="q2">
+        <p class="quiz-question">Você se pega pensando no passado repetidamente, tentando entender onde errou ou o que poderia ter sido diferente?</p>
+        <button class="quiz-btn" onclick="nextStep('q2', 'q3')">Sim, penso muito nisso</button>
+        <button class="quiz-btn" onclick="nextStep('q2', 'q3')">Um pouco</button>
+      </div>
 
-    <div class="divider">
-      <div class="line"></div>
-      <div class="dot"></div>
-      <div class="line"></div>
-    </div>
+      <div class="quiz-step" id="q3">
+        <p class="quiz-question">Se existisse um método prático para "desligar" essa dor emocional em 24 horas, você estaria disposta a testar?</p>
+        <button class="quiz-btn" onclick="startLoading()">Com certeza</button>
+        <button class="quiz-btn" onclick="startLoading()">Quero tentar</button>
+      </div>
 
-    <div class="cards-grid">
-      <h2>OS SINAIS QUE VOCÊ IGNORA</h2>
-
-      <div class="card">
-        <svg class="icon red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <div>
-          <h3>A ABSTINÊNCIA</h3>
-          <p>Ansiedade quando a pessoa não responde. O vazio que consome quando você não tem notícias.</p>
+      <div class="loading-container" id="loading">
+        <p class="loading-text" id="loading-msg">Analisando suas respostas...</p>
+        <div class="loading-percent" id="percent">0%</div>
+        <div class="loading-bar-bg">
+          <div class="loading-bar-fill" id="fill"></div>
         </div>
       </div>
 
-      <div class="card">
-        <svg class="icon purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-        <div>
-          <h3>O STALKING</h3>
-          <p>Vício em vigiar o perfil. Cada foto e cada story vira uma obsessão na sua mente.</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <svg class="icon gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        <div>
-          <h3>A ILUSÃO</h3>
-          <p>Achar que "dessa vez vai ser diferente". A esperança falsa que te mantém presa no ciclo.</p>
-        </div>
-      </div>
     </div>
+  </div>
 
-    <section class="text-center">
-      <h2>PRA QUEM É O MANUAL?</h2>
-      <p style="margin-bottom: 20px; font-size: 14px;">Se você marcar 2 itens, você precisa disso hoje:</p>
-      
-      <ul class="module-list">
-        <li class="module-item"><span class="check-gold">✓</span> Você stalkea o perfil exaustivamente</li>
-        <li class="module-item"><span class="check-gold">✓</span> Sente aperto no peito ao ver fotos</li>
-        <li class="module-item"><span class="check-gold">✓</span> Tem recaídas e manda mensagem</li>
-        <li class="module-item"><span class="check-gold">✓</span> Quer parar de sofrer, mas não consegue</li>
-      </ul>
-    </section>
+  <script>
+    function nextStep(current, next) {
+      document.getElementById(current).classList.remove('active');
+      document.getElementById(next).classList.add('active');
+    }
 
-    <section>
-      <h2>ELES CONSEGUIRAM EM 24H</h2>
+    function startLoading() {
+      document.getElementById('q3').classList.remove('active');
+      document.getElementById('loading').style.display = 'block';
+
+      let percent = 0;
+      const fill = document.getElementById('fill');
+      const text = document.getElementById('percent');
+      const msg = document.getElementById('loading-msg');
+
+      const interval = setInterval(() => {
+        percent++;
+        fill.style.width = percent + '%';
+        text.innerText = percent + '%';
+
+        if (percent === 30) msg.innerText = "Identificando padrões emocionais...";
+        if (percent === 60) msg.innerText = "Calculando nível de dependência...";
+        if (percent === 90) msg.innerText = "Gerando seu protocolo personalizado...";
+
+        if (percent >= 100) {
+          clearInterval(interval);
+          revealSalesPage();
+        }
+      }, 50);
+    }
+
+    function revealSalesPage() {
+      document.getElementById('quiz-overlay').style.opacity = '0';
+      document.getElementById('quiz-overlay').style.transition = 'opacity 1s';
       
-      <div class="print-container">
-        <div class="print-card">
-          <div class="print-header">
-            <div class="avatar">M</div>
-            <span class="print-name">Marcos P.</span>
+      setTimeout(() => {
+        document.getElementById('quiz-overlay').style.display = 'none';
+        document.getElementById('sales-page').style.display = 'block';
+        document.getElementById('sales-page').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('sales-page').style.opacity = '1';
+            document.getElementById('sales-page').style.transition = 'opacity 1s';
+        }, 100);
+      }, 1000);
+    }
+  </script>
+
+  <div id="sales-page">
+    <div class="bg-light"></div>
+    <div class="container">
+      
+      <div class="text-center">
+        <img src="https://i.ibb.co/XZ1SxN2C/Lua.png" alt="Logo Manual do Desapego" class="logo-img">
+      </div>
+
+      <div class="text-center">
+        <div style="background: rgba(212,175,55,0.1); border: 1px solid var(--gold); border-radius: 4px; display: inline-block; padding: 4px 12px; margin-bottom: 15px;">
+            <span style="color: var(--gold); font-size: 11px; font-weight: bold; text-transform: uppercase;">✓ PROTOCOLO GERADO COM SUCESSO</span>
+        </div>
+
+        <h1>
+          NO FUNDO,<br>
+          <span class="gray">VOCÊ SABE QUE ISSO</span><br>
+          <span class="gold">NÃO VAI MUDAR.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Hackeie a química do seu cérebro e elimine a vontade de ter recaída em <strong>24 horas.</strong>
+        </p>
+
+        <img src="https://i.ibb.co/Kxs8DwLp/IMG-6450.png" alt="Manual do Desapego" class="product-img">
+
+        <div class="price-box">
+          <span class="price-old">De R$ 69,90</span>
+          <span class="price-label">OFERTA LIBERADA</span>
+        </div>
+
+        <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO ME LIBERTAR</a>
+        <p style="font-size: 11px; margin-top: 8px; opacity: 0.6;">⚡ Acesso imediato no e-mail</p>
+      </div>
+
+      <div class="divider">
+        <div class="line"></div>
+        <div class="dot"></div>
+        <div class="line"></div>
+      </div>
+
+      <div class="cards-grid">
+        <h2>OS SINAIS QUE VOCÊ IGNORA</h2>
+
+        <div class="card">
+          <svg class="icon red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <div>
+            <h3>A ABSTINÊNCIA</h3>
+            <p>Ansiedade quando a pessoa não responde. O vazio que consome quando você não tem notícias.</p>
           </div>
-          <p class="print-text">"Achava que era coisa de mulher, mas a química cerebral é real. Fiz o protocolo e parei de vigiar o perfil dela no mesmo dia. Surreal."</p>
         </div>
 
-        <div class="print-card">
-          <div class="print-header">
-            <div class="avatar">J</div>
-            <span class="print-name">Júlia S.</span>
+        <div class="card">
+          <svg class="icon purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+          <div>
+            <h3>O STALKING</h3>
+            <p>Vício em vigiar o perfil. Cada foto e cada story vira uma obsessão na sua mente.</p>
           </div>
-          <p class="print-text">"Eu tava no fundo do poço, gastando dinheiro com besteira pra tentar esquecer. O Manual me salvou. Valeu muito mais que 10 reais."</p>
+        </div>
+        
+        <div class="card">
+          <svg class="icon gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <div>
+            <h3>A ILUSÃO</h3>
+            <p>Achar que "dessa vez vai ser diferente". A esperança falsa que te mantém presa no ciclo.</p>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section>
-      <h2>PERGUNTAS FREQUENTES</h2>
-      
-      <details>
-        <summary>O que é e por que vale a pena?</summary>
-        <div class="faq-answer">
-          Sendo sincero com você: Hoje em dia, com R$ 10,00 você mal compra um salgado na esquina, e a inflação faz o dinheiro valer cada vez menos. 
-          <br><br>
-          Você pode gastar esses 10 reais em algo temporário que acaba em 15 minutos, ou comprar <strong>Conhecimento</strong>. 
-          Aqui você leva algo que pode mudar sua vida pra sempre e te impedir de sofrer. O lanche acaba, a liberdade fica.
+      <section class="text-center">
+        <h2>PRA QUEM É O MANUAL?</h2>
+        <p style="margin-bottom: 20px; font-size: 14px;">Se você marcar 2 itens, você precisa disso hoje:</p>
+        
+        <ul class="module-list">
+          <li class="module-item"><span class="check-gold">✓</span> Você stalkea o perfil exaustivamente</li>
+          <li class="module-item"><span class="check-gold">✓</span> Sente aperto no peito ao ver fotos</li>
+          <li class="module-item"><span class="check-gold">✓</span> Tem recaídas e manda mensagem</li>
+          <li class="module-item"><span class="check-gold">✓</span> Quer parar de sofrer, mas não consegue</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>ELES CONSEGUIRAM EM 24H</h2>
+        
+        <div class="print-container">
+          <div class="print-card">
+            <div class="print-header">
+              <div class="avatar">M</div>
+              <span class="print-name">Marcos P.</span>
+            </div>
+            <p class="print-text">"Achava que era coisa de mulher, mas a química cerebral é real. Fiz o protocolo e parei de vigiar o perfil dela no mesmo dia. Surreal."</p>
+          </div>
+
+          <div class="print-card">
+            <div class="print-header">
+              <div class="avatar">J</div>
+              <span class="print-name">Júlia S.</span>
+            </div>
+            <p class="print-text">"Eu tava no fundo do poço, gastando dinheiro com besteira pra tentar esquecer. O Manual me salvou. Valeu muito mais que o valor pago."</p>
+          </div>
         </div>
-      </details>
+      </section>
 
-      <details>
-        <summary>Funciona pra mim?</summary>
-        <div class="faq-answer">Sim. O método baseia-se em neurociência e química cerebral. Funciona para homens e mulheres que querem retomar o controle.</div>
-      </details>
+      <section>
+        <h2>PERGUNTAS FREQUENTES</h2>
+        
+        <details>
+          <summary>O que é e por que vale a pena?</summary>
+          <div class="faq-answer">
+            Sendo sincero com você: Hoje em dia, com o valor dessa oferta você mal compra um salgado na esquina. 
+            <br><br>
+            Você pode gastar esse dinheiro em algo temporário que acaba em 15 minutos, ou comprar <strong>Conhecimento</strong>. 
+            Aqui você leva algo que pode mudar sua vida pra sempre e te impedir de sofrer.
+          </div>
+        </details>
 
-      <details>
-        <summary>E se eu não gostar?</summary>
-        <div class="faq-answer">Você tem o <strong>Desafio 24h</strong>. Se aplicar e não sentir a diferença no primeiro dia, nós devolvemos seu dinheiro na hora.</div>
-      </details>
-    </section>
+        <details>
+          <summary>Funciona pra mim?</summary>
+          <div class="faq-answer">Sim. O método baseia-se em neurociência e química cerebral. Funciona para homens e mulheres que querem retomar o controle.</div>
+        </details>
 
-    <div class="divider">
-      <div class="line"></div>
-      <div class="dot"></div>
-      <div class="line"></div>
-    </div>
+        <details>
+          <summary>E se eu não gostar?</summary>
+          <div class="faq-answer">Você tem o <strong>Desafio 24h</strong>. Se aplicar e não sentir a diferença no primeiro dia, nós devolvemos seu dinheiro na hora.</div>
+        </details>
+      </section>
 
-    <div class="text-center">
-      <div class="social-proof">
-        <span class="social-text">✨ +2.847 pessoas já se libertaram</span>
+      <div class="divider">
+        <div class="line"></div>
+        <div class="dot"></div>
+        <div class="line"></div>
       </div>
-    </div>
 
-    <div class="text-center">
-      <p style="margin-bottom: 16px; font-style: italic; font-size: 13px;">"Você não precisa de migalhas. Você precisa se curar."</p>
-      
-      <div class="price-box">
-        <span class="price-new">HOJE POR R$ 10,00</span>
+      <div class="text-center">
+        <div class="social-proof">
+          <span class="social-text">✨ +2.847 pessoas já se libertaram</span>
+        </div>
       </div>
 
-      <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO O PACOTE COMPLETO</a>
-      
-      <div class="security">
-        <span>🔒 Desafio 24h</span> • <span>Compra Segura</span>
+      <div class="text-center">
+        <p style="margin-bottom: 16px; font-style: italic; font-size: 13px;">"Você não precisa de migalhas. Você precisa se curar."</p>
+        
+        <div class="price-box">
+          <span class="price-old">De R$ 69,90</span>
+          <span class="price-label">VER VALOR PROMOCIONAL</span>
+        </div>
+
+        <a href="https://pay.kiwify.com.br/l2tifvm" class="btn">QUERO O PACOTE COMPLETO</a>
+        
+        <div class="security">
+          <span>🔒 Desafio 24h</span> • <span>Compra Segura</span>
+        </div>
       </div>
+
+      <footer>
+        <p style="font-size: 10px; color: #444;">© 2026 Manual do Desapego</p>
+      </footer>
+
     </div>
-
-    <footer>
-      <p style="font-size: 10px; color: #444;">© 2026 Manual do Desapego</p>
-    </footer>
-
   </div>
 </body>
 </html>
